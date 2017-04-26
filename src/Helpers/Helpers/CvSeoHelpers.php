@@ -14,15 +14,17 @@ function getTitle($title)
     }
 }
 
-function getFavicons()
-{
-    return '<link rel="icon" href="/favicon/16.png" sizes="16x16">
-    <link rel="icon" href="/favicon/32.png" sizes="32x32">
-    <link rel="apple-touch-icon" sizes="144x144" href="/favicon/144.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/favicon/114.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/favicon/72.png">
-    <link rel="apple-touch-icon" href="/favicon/57.png">
-    <link rel="apple-touch-icon-precomposed" href="/favicon/57.png">';
+if(!function_exists('getFavicons')){
+    function getFavicons()
+    {
+        return '<link rel="icon" href="/favicon/16.png" sizes="16x16">
+        <link rel="icon" href="/favicon/32.png" sizes="32x32">
+        <link rel="apple-touch-icon" sizes="144x144" href="/favicon/144.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/favicon/114.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/favicon/72.png">
+        <link rel="apple-touch-icon" href="/favicon/57.png">
+        <link rel="apple-touch-icon-precomposed" href="/favicon/57.png">';
+    }
 }
 
 function getDescription()
