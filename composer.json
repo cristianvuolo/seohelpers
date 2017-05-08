@@ -1,7 +1,7 @@
 {
   "name": "cristianvuolo/seohelpers",
   "license": "",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "require": {
     "php": ">=5.5.9",
     "artesaos/seotools": "0.10.0"
