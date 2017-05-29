@@ -52,13 +52,15 @@ function getSeparator()
     return '|';
 }
 
-function seoGenerete($title = null)
+function seoGenerete($title = null, $analitycsCode=null)
 {
     getTitle($title);
     getDescription();
     getKeywords();
     SEO::opengraph()->addProperty('locale', 'pt-br');
-    googleAnalytics();
+    if(!is_null($analitycsCode)) {
+        googleAnalytics($analitycsCode);
+    }
     return SEO::generate();
 }
 
