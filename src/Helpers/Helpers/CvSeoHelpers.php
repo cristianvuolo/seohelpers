@@ -14,7 +14,7 @@ function getTitle($title)
     }
 }
 
-if(!function_exists('getFavicons')){
+if (!function_exists('getFavicons')) {
     function getFavicons()
     {
         return '<link rel="icon" href="/favicon/16.png" sizes="16x16">
@@ -30,7 +30,13 @@ if(!function_exists('getFavicons')){
 function getDescription()
 {
     if (!SEO::metatags()->getDescription()) {
-        $description = "Descrição do app";
+        $config = getConfig('description');
+        if ($config) {
+            $description = $config;
+        } else {
+            $description = "Descrição do app";
+        }
+
         SEO::setDescription($description);
     } else {
         SEO::setDescription(SEO::metatags()->getDescription());
@@ -40,7 +46,13 @@ function getDescription()
 function getKeywords()
 {
     if (!SEO::metatags()->getKeywords()) {
-        $keyWords = ['kew', 'words'];
+        $config = getConfig('keywords');
+        if ($config) {
+            $keyWords = $config;
+        } else {
+            $keyWords = ['kew', 'words'];
+        }
+
         SEO::metatags()->setKeywords($keyWords);
     } else {
         SEO::metatags()->setKeywords(SEO::metatags()->getKeywords());
@@ -52,21 +64,21 @@ function getSeparator()
     return '|';
 }
 
-function seoGenerete($title = null, $analitycsCode=null)
+function seoGenerete($title = null)
 {
     getTitle($title);
     getDescription();
     getKeywords();
     SEO::opengraph()->addProperty('locale', 'pt-br');
-    if(!is_null($analitycsCode)) {
-        googleAnalytics($analitycsCode);
-    }
     return SEO::generate();
 }
 
-function googleAnalytics($id = "UA-1203021") {
-    echo "<script>(function (i, s, o, g, r, a, m) {i['GoogleAnalyticsObject'] = r;i[r] = i[r] || function () {(i[r].q = i[r].q || []).push(arguments)}, 
+function googleAnalytics($id = null)
+{
+    if (!is_null($id)) {
+        echo "<script>(function (i, s, o, g, r, a, m) {i['GoogleAnalyticsObject'] = r;i[r] = i[r] || function () {(i[r].q = i[r].q || []).push(arguments)}, 
     i[r].l = 1 * new Date();a = s.createElement(o),m = s.getElementsByTagName(o)[0];a.async = 1;a.src = g;m.parentNode.insertBefore(a, m)})(window, document, 
-    'script', '//www.google-analytics.com/analytics.js', 'ga');ga('create', '".$id."', 'auto');ga('send', 'pageview');</script>
+    'script', '//www.google-analytics.com/analytics.js', 'ga');ga('create', '" . $id . "', 'auto');ga('send', 'pageview');</script>
     ";
+    }
 }
