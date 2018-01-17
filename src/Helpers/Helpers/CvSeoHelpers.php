@@ -8,7 +8,7 @@ function getTitle($title)
         if ($title !== null) {
             $title = "{$title} {$sulfix}";
         }
-        SEO::setTitle($title);
+        SEO::setTitle(getLayoutData('company_name'));
     } else {
         SEO::setTitle(SEO::getTitle() . $sulfix);
     }
