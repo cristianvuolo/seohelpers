@@ -1,6 +1,7 @@
 {
   "name": "cristianvuolo/seohelpers",
-  "license": "",
+  "license": "MIT",
+  "description": "Addon Seo Helpers",
   "require": {
     "php": ">=5.5.9",
     "artesaos/seotools": "0.10.0"
